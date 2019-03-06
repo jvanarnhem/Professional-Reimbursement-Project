@@ -1,0 +1,344 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <title>OFCS Professional Reimbursement Form</title>
+  <style>
+    #formContainer {
+      padding-bottom: 40px;
+    }
+    #header0 {
+      padding-top: 2vw;
+    }
+    #header1 {
+      font-size:3.5vw;
+      font-weight: bold;
+    }
+    #header2 {
+      font-size:2.5vw;
+    }
+    img {
+      vertical-align: middle;
+    }
+    .row .col{
+      padding: 0px !important;
+      margin-bottom: 0px !important;
+      margin-top: 0px !important;
+    }
+    .grey {
+      padding: 5px 10px 10px 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="header indigo darken-3 white-text">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <img src="https://ofhsmath.com/online_forms/images/banner.png" alt="" class="responsive-img">
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container" id="formContainer">
+    <div class="col s12">
+        <form id="formValidate" novalidate="novalidate">
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix">date_range</i>
+              <input type="text" name="subNum" id="subNum" value="<?= info[0] ?>" readonly>
+              <label for="subNum">Submission ID</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix"></i>
+              <input type="text" name="timeSTamp" id="timeStamp" value="<?= info[1] ?>" readonly>
+              <label for="timeStamp">Submission Date</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix">person</i>
+              <input type="text" name="lastName" id="lastName" value="<?= info[2] ?>" readonly>
+              <label for="lastName">Last Name</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix"></i>
+              <input type="text" name="firstName" id="firstName" value="<?= info[3] ?>" readonly>
+              <label for="firstName">First Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix">business</i>
+              <input type="text" id="building" name="building" value="<?= info[4] ?>" readonly>
+              <label for="building">Assignment/Job Title</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix"></i>
+              <input type="text" id="assignment" name="assignment" value="<?= info[5] ?>" readonly>
+              <label for="assignment">Assignment/Job Title</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix">email</i>
+              <input type="email" id="email" name="email" value="<?= info[6] ?>" readonly>
+              <label for="email">Your Email</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix">phone</i>
+              <input type="text" id="phone" name="phone" value="<?= info[7] ?>" readonly>
+              <label for="phone">Phone Extension</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">info</i>
+              <input type="text" id="meetingInfo" name="meetingInfo" value="<?= info[8] ?>" readonly>
+              <label for="meetingInfo">Name/Type of Meeting</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix"></i>
+              <input type="text" id="dates" name="dates" value="<?= info[9] ?>" readonly>
+              <label for="dates">Meeting Date(s)</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix"></i>
+              <input type="text" id="location" name="location" value="<?= info[10] ?>" readonly>
+              <label for="location">Location</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix">announcement</i>
+              <input type="text" id="subNeed" name="subNeed" value="<?= info[11] ?>" readonly>
+              <label for="subNeed">Substitute Needed</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix"></i>
+              <input type="text" id="subDays" name="subDays" value="<?= info[12] ?>" readonly>
+              <label for="subDays">Days Substitute Needed</label>
+            </div>
+          </div>
+          <div class="grey lighten-3" id="costs">
+            <h5>Estimated Costs</h5>
+            <div class="row">
+              <div class="input-field col s4 offset-s1">
+                <input type="number" id="mileage" name="mileage" value="<?= info[13] ?>" readonly>
+                <label for="mileage">Total Mileage</label>
+              </div>
+              <div class="input-field col s4 offset-s2">
+                <input type="text" id="mileageTotal" name="mileageTotal" value="<?= info[14] ?>" readonly>
+                <label for="mileageTotal">Mileage</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4 offset-s1">
+                <input type="number" id="registration" name="registration" value="<?= info[15] ?>" readonly>
+                <label for="registration">Registration</label>
+              </div>
+              <div class="input-field col s4 offset-s2">
+                <input type="text" id="registrationTotal" name="registrationTotal" value="<?= info[16] ?>" readonly>
+                <label for="registrationTotal">Registration</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4 offset-s1">
+                <input type="number" id="parking" name="parking" value="<?= info[17] ?>" readonly>
+                <label for="parking">Parking/Tolls</label>
+              </div>
+              <div class="input-field col s4 offset-s2">
+                <input type="text" id="parkingTotal" name="parkingTotal" value="<?= info[18] ?>" readonly>
+                <label for="parkingTotal">Parking/Tolls</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4 offset-s1">
+                <input type="number" id="lodging" name="lodging" value="<?= info[19] ?>" readonly>
+                <label for="lodging">Lodging</label>
+              </div>
+              <div class="input-field col s4 offset-s2">
+                <input type="text" id="lodgingTotal" name="lodgingTotal" value="<?= info[20] ?>" readonly>
+                <label for="lodgingTotal">Lodging</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4 offset-s1">
+                <input type="number" id="breakfast" name="breakfast" value="<?= info[21] ?>" readonly>
+                <label for="breakfast">Breakfast</label>
+              </div>
+              <div class="input-field col s4 offset-s2">
+                <input type="text" id="breakfastTotal" name="breakfastTotal" value="<?= info[22] ?>" readonly>
+                <label for="breakfastTotal">Breakfast</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4 offset-s1">
+                <input type="number" id="lunch" name="lunch" value="<?= info[23] ?>" readonly>
+                <label for="lunch">Lunch</label>
+              </div>
+              <div class="input-field col s4 offset-s2">
+                <input type="text" id="lunchTotal" name="lunchTotal" value="<?= info[24] ?>" readonly>
+                <label for="lunchTotal">Lunch</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4 offset-s1">
+                <input type="number" id="dinner" name="dinner" value="<?= info[25] ?>" readonly>
+                <label for="dinner">Dinner</label>
+              </div>
+              <div class="input-field col s4 offset-s2">
+                <input type="text" id="dinnerTotal" name="dinnerTotal" value="<?= info[26] ?>" readonly>
+                <label for="dinnerTotal">Dinner</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4 offset-s7">
+                <input type="text" id="grandTotal" name="grandTotal" value="<?= info[27] ?>" readonly>
+                <label for="grandTotal">Total Cost</label>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix">edit</i>
+              <input type="text" id="signature" name="signature" value="<?= info[28] ?>" readonly>
+              <label for="signature">Digital Signature</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix"></i>
+              <input type="text" id="signDate" name="signDate" value="<?= info[29] ?>" readonly>
+              <label for="signDate">Date</label>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 0px;">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">comment</i>
+              <textarea id="adminComments" name="adminComments" class="materialize-textarea"></textarea>
+              <label for="Admin Comments">Administrator Comments.</label>
+            </div>
+          </div>
+          <div id="output"></div>
+          <div class="row" style="margin-bottom: 0px;">
+            <div class="input-field col s12 center-align">
+              <!-- onclick="submitForm(); return false;" -->
+              <button class="waves-effect waves-light btn green submit-btn" id="btnApprove" type="submit">Approve
+                <i class="material-icons right">check</i>
+              </button>
+              <button class="waves-effect waves-light btn red submit-btn" id="btnReject" type="submit">Reject
+                <i class="material-icons right">clear</i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script>
+    function approve() {
+        document.getElementById('btnApprove').disabled=true;
+        document.getElementById('btnReject').disabled=true;
+        
+        var data = {
+            "subNum": <?= info[0] ?>,
+            "timeStamp": <?= info[1] ?>,
+            "firstName": <?= info[3] ?>,
+            "lastName": <?= info[2] ?>,
+            "email": <?= info[6] ?>,
+            "meetinginfo": <?= info[8] ?>,
+            "dates": <?= info[9] ?>,
+            "grandtotal": <?= info[27] ?>,
+            "adminComments": document.getElementById('adminComments').value,
+        };
+        var myJSON = JSON.stringify(data);
+        
+        google.script.run
+            .withSuccessHandler (onSuccess)
+            .withFailureHandler (onFailure)
+            .withUserObject(this)
+            .approveSubmission(myJSON);
+    }
+        
+    function reject() {
+        document.getElementById('btnApprove').disabled=true;
+        document.getElementById('btnReject').disabled=true;
+        
+        var data = {
+            "subNum": <?= info[0] ?>,
+            "timeStamp": <?= info[1] ?>,
+            "firstName": <?= info[3] ?>,
+            "lastName": <?= info[2] ?>,
+            "email": <?= info[6] ?>,
+            "meetinginfo": <?= info[8] ?>,
+            "dates": <?= info[9] ?>,
+            "grandtotal": <?= info[27] ?>,
+            "adminComments": document.getElementById('adminComments').value,
+        };
+        var myJSON = JSON.stringify(data);
+        
+        google.script.run
+            .withSuccessHandler (onSuccess)
+            .withFailureHandler (onFailure)
+            .withUserObject(this)
+            .rejectSubmission(myJSON);
+    }
+        
+    function onSuccess() {
+        var div = document.getElementById('output');
+        div.innerHTML = 'Form submission completed.';
+    }
+    function onFailure() {
+        var div = document.getElementById('output');
+        div.innerHTML = 'Something went wrong!';
+    }
+    
+    const formToJSON = (elements) => [].reduce.call(elements, (data, element) => {
+      // Make sure the element has the required properties.
+      console.log(element.value);
+      if (isValidElement(element) && isValidValue(element)) {
+        if (isCheckbox(element)) {
+          data[element.name] = (data[element.name] || []).concat(element.value);
+        } else {
+          data[element.name] = element.value;
+        }
+      }
+
+      return data;
+    }, {});
+    const isValidElement = element => {
+      return element.name;
+    };
+    const isValidValue = element => {
+      return (!['checkbox', 'radio'].includes(element.type) || element.checked);
+    };
+    const isCheckbox = element => element.type === 'checkbox';
+    const isSelect = element => element.type === 'select';
+    const getSelectValues = options => [].reduce.call(options, (values, option) => {
+      return option.selected ? values.concat(option.value) : values;
+    }, []);
+
+    $(document).ready(function(){
+      $('#btnApprove').click(approve);
+      $('#btnReject').click(reject);
+    });
+    
+
+  </script>
+</body>
+</html>
+
+
+
