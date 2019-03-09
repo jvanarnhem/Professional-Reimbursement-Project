@@ -223,7 +223,7 @@
           <div class="row" style="margin-bottom: 0px;">
             <div class="input-field col s12">
               <i class="material-icons prefix">comment</i>
-              <textarea id="adminComments" name="adminComments" class="materialize-textarea"></textarea>
+              <textarea id="adminComments" name="adminComments" class="materialize-textarea" readonly><?= info[31] ?></textarea>
               <label for="adminComments">Administrator Comments.</label>
             </div>
           </div>
@@ -232,6 +232,26 @@
               <i class="material-icons prefix">comment</i>
               <textarea id="districtComments" name="districtComments" class="materialize-textarea"></textarea>
               <label for="districtComments">District Administrator Comments.</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <i class="material-icons prefix"></i>
+              <div class="col s12 m3 offset-s1">
+                <span>Route Final Approval</span>
+              </div>
+              <div class="col s2 offset-s1">
+                <label>
+                  <input type="radio" value="Building" name="route" checked>
+                  <span>Building</span>
+                </label>
+              </div>  
+              <div class="col s2 offset-s1">
+                <label>
+                  <input type="radio" value="District" name="route">
+                  <span>District</span>
+                </label>
+              </div>
             </div>
           </div>
           <div id="output"></div>
@@ -268,7 +288,9 @@
             "meetinginfo": <?= info[8] ?>,
             "dates": <?= info[9] ?>,
             "grandtotal": <?= info[27] ?>,
-            "adminComments": document.getElementById('adminComments').value,
+            "adminComments": <?= info[31] ?>,
+            "adminComments": document.getElementById('districtComments').value,
+            "route": document.getElementById('route').value,
         };
         var myJSON = JSON.stringify(data);
         
@@ -292,7 +314,9 @@
             "meetinginfo": <?= info[8] ?>,
             "dates": <?= info[9] ?>,
             "grandtotal": <?= info[27] ?>,
-            "adminComments": document.getElementById('adminComments').value,
+            "adminComments": <?= info[31] ?>,
+            "adminComments": document.getElementById('districtComments').value,
+            "route": document.getElementById('route').value,
         };
         var myJSON = JSON.stringify(data);
         

@@ -152,7 +152,7 @@ function submitReport(data) {
  // CHANGE EMAIL ADDRESS HERE to "adminemail"  
     MailApp.sendEmail({
       to: 'jvanarnhem@ofcs.net',
-      subject: "Professional Reimbursement Form Submission: "+data3['lastName'] + " #" + subNumber,
+      subject: "B Professional Reimbursement Form Submission: "+data3['lastName'] + " #" + subNumber,
       htmlBody: htmlBody
     });
     return "Submission successful. You may close this window now.";
@@ -232,9 +232,8 @@ function approveSubmission (data) {
  
   MailApp.sendEmail({
     to: data3.email + ", " + SETTINGS.FINAL_EMAIL,
-    subject: "Professional Reimbursement Form Approval Notice" + " #" + data3['subNum'],
-    htmlBody: htmlBody,
-    attachments: [finalDoc.getAs(MimeType.PDF)]
+    subject: "D Professional Reimbursement Form Approval Notice" + " #" + data3['subNum'],
+    htmlBody: htmlBody
   });
   
   return "Your submission is complete. You may close this window now.";
