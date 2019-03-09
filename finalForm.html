@@ -129,91 +129,92 @@
             </div>
           </div>
           <div class="grey lighten-3" id="costs">
-            <h5>Estimated Costs</h5>
             <div class="row">
               <div class="input-field col s4 offset-s1">
-                <input type="number" id="mileage" name="mileage" value="<?= info[13] ?>" readonly>
-                <label for="mileage">Total Mileage</label>
+                <h5>Estimated Costs</h5>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="text" id="mileageTotal" name="mileageTotal" value="<?= info[14] ?>" readonly>
-                <label for="mileageTotal">Mileage</label>
+                <h5>Actual Costs</h5>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s4 offset-s1">
-                <input type="number" id="mileage" name="mileage" value="<?= info[13] ?>" readonly>
-                <label for="mileage">Actual Total Mileage</label>
+                <input type="text" id="mileageTotal" name="mileageTotal" value="<?= info[14].toFixed(2) ?>" readonly>
+                <label for="mileageTotal">Estimated Total Mileage</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="text" id="mileageTotal" name="mileageTotal" value="<?= info[14] ?>" readonly>
-                <label for="mileageTotal">Mileage</label>
+                <input type="number" id="actMileageTotal" name="actMileageTotal" >
+                <label for="actMileageTotal">Actual Total Mileage</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s4 offset-s1">
-                <input type="number" id="registration" name="registration" value="<?= info[15] ?>" readonly>
-                <label for="registration">Registration</label>
+                <input type="text" id="registrationTotal" name="registrationTotal" value="<?= info[16].toFixed(2) ?>" readonly>
+                <label for="registrationTotal">Estimated Registration</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="text" id="registrationTotal" name="registrationTotal" value="<?= info[16] ?>" readonly>
-                <label for="registrationTotal">Registration</label>
+                <input type="number" id="actRegistrationTotal" name="actRegistrationTotal">
+                <label for="actRegistrationTotal">Actual Registration</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s4 offset-s1">
-                <input type="number" id="parking" name="parking" value="<?= info[17] ?>" readonly>
-                <label for="parking">Parking/Tolls</label>
+                <input type="text" id="parkingTotal" name="parkingTotal" value="<?= info[17].toFixed(2) ?>" readonly>
+                <label for="parkingTotal">Estimated Parking/Tolls</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="text" id="parkingTotal" name="parkingTotal" value="<?= info[18] ?>" readonly>
-                <label for="parkingTotal">Parking/Tolls</label>
+                <input type="number" id="actParkingTotal" name="actParkingTotal">
+                <label for="actParkingTotal">Actual Parking/Tolls</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s4 offset-s1">
-                <input type="number" id="lodging" name="lodging" value="<?= info[19] ?>" readonly>
-                <label for="lodging">Lodging</label>
+                <input type="text" id="lodgingTotal" name="lodgingTotal" value="<?= info[20].toFixed(2) ?>" readonly>
+                <label for="lodgingTotal">Estimated Lodging</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="text" id="lodgingTotal" name="lodgingTotal" value="<?= info[20] ?>" readonly>
-                <label for="lodgingTotal">Lodging</label>
+                <input type="number" id="actLodgingTotal" name="actLodgingTotal">
+                <label for="actLodgingTotal">Actual Lodging</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s4 offset-s1">
-                <input type="number" id="breakfast" name="breakfast" value="<?= info[21] ?>" readonly>
-                <label for="breakfast">Breakfast</label>
+                <input type="text" id="breakfastTotal" name="breakfastTotal" value="<?= info[22].toFixed(2) ?>" readonly>
+                <label for="breakfastTotal">Estimated Breakfast</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="text" id="breakfastTotal" name="breakfastTotal" value="<?= info[22] ?>" readonly>
-                <label for="breakfastTotal">Breakfast</label>
+                <input type="number" id="actBreakfastTotal" name="actBreakfastTotal">
+                <label for="actBreakfastTotal">Actual Breakfast</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s4 offset-s1">
-                <input type="number" id="lunch" name="lunch" value="<?= info[23] ?>" readonly>
-                <label for="lunch">Lunch</label>
+                <input type="text" id="lunchTotal" name="lunchTotal" value="<?= info[24].toFixed(2) ?>" readonly>
+                <label for="lunchTotal">Estimated Lunch</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="text" id="lunchTotal" name="lunchTotal" value="<?= info[24] ?>" readonly>
-                <label for="lunchTotal">Lunch</label>
+                <input type="number" id="actLunchTotal" name="actLunchTotal">
+                <label for="actLunchTotal">Actual Lunch</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s4 offset-s1">
-                <input type="number" id="dinner" name="dinner" value="<?= info[25] ?>" readonly>
-                <label for="dinner">Dinner</label>
+                <input type="text" id="dinnerTotal" name="dinnerTotal" value="<?= info[26].toFixed(2) ?>" readonly>
+                <label for="dinnerTotal">Estimated Dinner</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="text" id="dinnerTotal" name="dinnerTotal" value="<?= info[26] ?>" readonly>
-                <label for="dinnerTotal">Dinner</label>
+                <input type="number" id="actDinnerTotal" name="actDinnerTotal">
+                <label for="actDinnerTotal">Actual Dinner</label>
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s4 offset-s7">
-                <input type="text" id="grandTotal" name="grandTotal" value="<?= info[27] ?>" readonly>
-                <label for="grandTotal">Total Cost</label>
+              <div class="input-field col s4 offset-s1">
+                <input type="text" id="grandTotal" name="grandTotal" value="<?= info[27].toFixed(2) ?>" readonly>
+                <label for="grandTotal">Estimated Total Cost</label>
+              </div>
+              <div class="input-field col s4 offset-s2">
+                <input type="text" id="actGrandTotal" name="actGrandTotal" placeholder="$0.00" disabled>
+                <label for="actGrandTotal">Actual Total Cost</label>
               </div>
             </div>
           </div>
@@ -366,6 +367,7 @@
     }, []);
 
     $(document).ready(function(){
+      calculateCosts();
       $("#formValidate").validate({
         submitHandler: function(form, event) { 
           event.preventDefault();
@@ -374,7 +376,39 @@
       });
     });
     
-
+    $("input[id='actMileageTotal']").on("change", function(){
+      calculateCosts();
+    });
+    $("input[id='actRegistrationTotal']").on("change", function(){
+      calculateCosts();
+    });
+    $("input[id='actParkingTotal']").on("change", function(){
+      calculateCosts();
+    });
+    $("input[id='actLodgingTotal']").on("change", function(){
+      calculateCosts();
+    });
+    $("input[id='actBreakfastTotal']").on("change", function(){
+      calculateCosts();
+    });
+    $("input[id='actLunchTotal']").on("change", function(){
+      calculateCosts();
+    });
+    $("input[id='actDinnerTotal']").on("change", function(){
+      calculateCosts();
+    });
+    function calculateCosts() {
+      var mileageCost = Number($('#actMileageTotal').val());
+      var registrationCost = Number($('#actRegistrationTotal').val());
+      var parkingCost = Number($('#actParkingTotal').val());
+      var lodgingCost = Number($('#actLodgingTotal').val());
+      var breakfastCost = Number($('#actBreakfastTotal').val());
+      var lunchCost = Number($('#actLunchTotal').val());
+      var dinnerCost = Number($('#actDinnerTotal').val());
+      
+      document.getElementById('actGrandTotal').value = "$" + (mileageCost + registrationCost + 
+        parkingCost + lodgingCost + breakfastCost + lunchCost + dinnerCost).toFixed(2);
+    }
   </script>
 </body>
 </html>
