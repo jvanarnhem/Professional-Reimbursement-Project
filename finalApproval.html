@@ -77,7 +77,7 @@
             <div class="input-field col s12 m6">
               <i class="material-icons prefix">business</i>
               <input type="text" id="building" name="building" value="<?= info[5] ?>" readonly>
-              <label for="building">Building</label>
+              <label for="building">Assignment/Job Title</label>
             </div>
             <div class="input-field col s12 m6">
               <i class="material-icons prefix"></i>
@@ -222,39 +222,38 @@
           <div class="row">
             <div class="input-field col s12 m6">
               <i class="material-icons prefix">edit</i>
-              <input type="text" id="signature" name="signature">
+              <input type="text" id="signature" name="signature" value="<?= info[29] ?>" readonly>
               <label for="signature">Digital Signature</label>
             </div>
             <div class="input-field col s12 m6">
               <i class="material-icons prefix"></i>
-              <input type="text" id="signDate" name="signDate">
+              <input type="text" id="signDate" name="signDate" value="<?= info[30] ?>" readonly>
               <label for="signDate">Date</label>
             </div>
           </div>
           <div class="row" style="margin-bottom: 0px;">
             <div class="input-field col s12">
               <i class="material-icons prefix">comment</i>
-              <textarea id="finalComments" name="finalComments" class="materialize-textarea"></textarea>
-              <label for="finalComments">Comments for Final Submission:</label>
+              <textarea id="finalComments" name="finalComments" class="materialize-textarea" readonly><?= info[36] ?></textarea>
+              <label for="finalComments">Final Submission Comments.</label>
             </div>
           </div>
-          <div class="row" style="margin-bottom: 0px;">
-            <label for="myFiles" style="padding-left: 11px;">Upload Documentation - <span style="color:red; font-style: italic;">Google Docs not permitted</span></label>
-            <div class = "file-field input-field col s12">
-              <div class = "btn">
-                <span>Browse</span>
-                <input name="myFiles" id="myFiles" type = "file" required multiple />
-              </div>
-              <div class = "file-path-wrapper">
-                <input name="myFiles2" id="myFiles2" class = "file-path validate" type = "text" placeholder = "Upload multiple files by clicking while holding down CTRL" />
-              </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">info</i>
+              <input type="text" id="uploadLink" name="uploadLink" value="http://www.ofcs.net" readonly>
+              <label for="uploadLink">Link to Receipts:</label>
             </div>
           </div>
           <div id="output"></div>
-          <div class="row" id="myButton">
-            <div class="input-field center">
-              <button class="indigo waves-effect waves-light btn submit-btn" id="btnSubmit" type="submit">Final Submission
-                <i class="material-icons right">send</i>
+          <div class="row" style="margin-bottom: 0px;">
+            <div class="input-field col s12 center-align">
+              <!-- onclick="submitForm(); return false;" -->
+              <button class="waves-effect waves-light btn green submit-btn" id="btnApprove" type="submit">Approve
+                <i class="material-icons right">check</i>
+              </button>
+              <button class="waves-effect waves-light btn red submit-btn" id="btnReject" type="submit">Reject
+                <i class="material-icons right">clear</i>
               </button>
             </div>
           </div>
@@ -276,10 +275,10 @@
       function uploadFiles() {
         var allFiles = document.getElementById('myFiles').files;
 		var lName = document.getElementById('lastName').value;
-		var nDate = document.getElementById('dates').value;
+		var nDate = document.getElementById('dateOfActivity').value;
         var fixedDate = nDate.replace(/\,/g,"");
         console.log(fixedDate);
-		var folderName = lName + ' '+ fixedDate + ' Professional Reimbursement Receipts';
+		var folderName = lName + ' '+ fixedDate + ' EAP Verification';
         
 		if (allFiles.length == 0) {
 		  window.alert('No file selected!');
@@ -313,20 +312,8 @@
 		  document.getElementById('output').innerHTML = 'Upload complete. '
             + numUploads.total + ' file(s) uploaded. ';
 		  numUploads.done = 0;
-          
-          var data = {
-            "subNum": <?= info[0] ?>,
-            "firstName": <?= info[4] ?>,
-            "lastName": <?= info[3] ?>,
-            "email": <?= info[7] ?>,
-            "meetingInfo": <?= info[9] ?>,
-            "dates": <?= info[10] ?>,
-            "actGrandTotal": document.getElementById('actGrandTotal').value,
-            "finalComments": document.getElementById('finalComments').value,
-          };
-          
-          //const form = document.getElementsByClassName('main')[0];
-          //const data = formToJSON(form.elements);
+          const form = document.getElementsByClassName('main')[0];
+          const data = formToJSON(form.elements);
           console.log(data);
       
           var dataToSend = JSON.stringify(data, null, "  ");
@@ -339,10 +326,51 @@
 		}
       }
       
-      function submitForm(e) {   
-        document.getElementById('btnSubmit').disabled=true;
-        uploadFiles();
-      }
+function approve() {
+        document.getElementById('btnApprove').disabled=true;
+        document.getElementById('btnReject').disabled=true;
+        
+        var data = {
+            "subNum": <?= info[0] ?>,
+            "timeStamp": <?= info[2] ?>,
+            "firstName": <?= info[4] ?>,
+            "lastName": <?= info[3] ?>,
+            "email": <?= info[7] ?>,
+            "meetinginfo": <?= info[9] ?>,
+            "dates": <?= info[10] ?>,
+            "grandtotal": <?= info[28] ?>,
+        };
+        var myJSON = JSON.stringify(data);
+        
+        google.script.run
+            .withSuccessHandler (onSuccess)
+            .withFailureHandler (onFailure)
+            .withUserObject(this)
+            .approveSubmission3(myJSON);
+    }
+        
+    function reject() {
+        document.getElementById('btnApprove').disabled=true;
+        document.getElementById('btnReject').disabled=true;
+        
+        var data = {
+            "subNum": <?= info[0] ?>,
+            "timeStamp": <?= info[2] ?>,
+            "firstName": <?= info[4] ?>,
+            "lastName": <?= info[3] ?>,
+            "email": <?= info[7] ?>,
+            "meetinginfo": <?= info[9] ?>,
+            "dates": <?= info[10] ?>,
+            "grandtotal": <?= info[28] ?>,         
+        };
+        var myJSON = JSON.stringify(data);
+        
+        google.script.run
+            .withSuccessHandler (onSuccess)
+            .withFailureHandler (onFailure)
+            .withUserObject(this)
+            .rejectSubmission3(myJSON);
+    }
         
     function onSuccess() {
         var div = document.getElementById('output');
@@ -350,7 +378,7 @@
     }
     function onFailure() {
         var div = document.getElementById('output');
-        div.innerHTML = 'Something went wrong!';
+        div.innerHTML = 'Something went wrong with final submission form!';
     }
     
     const formToJSON = (elements) => [].reduce.call(elements, (data, element) => {
@@ -379,48 +407,10 @@
     }, []);
 
     $(document).ready(function(){
-      calculateCosts();
-      $("#formValidate").validate({
-        submitHandler: function(form, event) { 
-          event.preventDefault();
-          submitForm(event);
-        }
-      });
+      $('#btnApprove').click(approve);
+      $('#btnReject').click(reject);
     });
     
-    $("input[id='actMileageTotal']").on("change", function(){
-      calculateCosts();
-    });
-    $("input[id='actRegistrationTotal']").on("change", function(){
-      calculateCosts();
-    });
-    $("input[id='actParkingTotal']").on("change", function(){
-      calculateCosts();
-    });
-    $("input[id='actLodgingTotal']").on("change", function(){
-      calculateCosts();
-    });
-    $("input[id='actBreakfastTotal']").on("change", function(){
-      calculateCosts();
-    });
-    $("input[id='actLunchTotal']").on("change", function(){
-      calculateCosts();
-    });
-    $("input[id='actDinnerTotal']").on("change", function(){
-      calculateCosts();
-    });
-    function calculateCosts() {
-      var mileageCost = Number($('#actMileageTotal').val());
-      var registrationCost = Number($('#actRegistrationTotal').val());
-      var parkingCost = Number($('#actParkingTotal').val());
-      var lodgingCost = Number($('#actLodgingTotal').val());
-      var breakfastCost = Number($('#actBreakfastTotal').val());
-      var lunchCost = Number($('#actLunchTotal').val());
-      var dinnerCost = Number($('#actDinnerTotal').val());
-      
-      document.getElementById('actGrandTotal').value = "$" + (mileageCost + registrationCost + 
-        parkingCost + lodgingCost + breakfastCost + lunchCost + dinnerCost).toFixed(2);
-    }
   </script>
 </body>
 </html>

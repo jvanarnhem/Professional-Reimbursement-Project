@@ -37,6 +37,12 @@ function doMerge(subNumber, lastName, folderID, templateID, spreadsheetID) {
       var row = values[i];
       var body = bodyCopy.copy();
     
+      // Go through once for currency fields indicated with [$fieldname]
+      for (var f = 0; f < fieldNames.length; f++) {
+        body.replaceText("\\{" + fieldNames[f] + "\\}", formatStringCurrency(row[f]));//replace {fieldName} with the respective formatted money data value
+      }
+      
+      // One more time for non-currency fields
       for (var f = 0; f < fieldNames.length; f++) {
         body.replaceText("\\[" + fieldNames[f] + "\\]", row[f]);//replace [fieldName] with the respective data value
       }
@@ -70,5 +76,8 @@ function doMerge(subNumber, lastName, folderID, templateID, spreadsheetID) {
   return mergedDoc;
 }
 
-
+function formatStringCurrency(tempValue) {
+  // Description
+  return Utilities.formatString("$%.2f", +tempValue);
+}
 
