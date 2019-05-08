@@ -140,11 +140,11 @@
             <div class="row">
               <div class="input-field col s4 offset-s1">
                 <input type="text" id="mileageTotal" name="mileageTotal" value="<?= info[15] ?>" readonly>
-                <label for="mileageTotal">Estimated Total Mileage</label>
+                <label for="mileageTotal">Estimated Mileage Cost</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="number" id="actMileageTotal" name="actMileageTotal" >
-                <label for="actMileageTotal">Actual Total Mileage</label>
+                <input type="number" id="actMileageTotal" name="actMileageTotal" placeholder="0">
+                <label for="actMileageTotal">Actual Mileage Cost</label>
               </div>
             </div>
             <div class="row">
@@ -153,17 +153,17 @@
                 <label for="registrationTotal">Estimated Registration</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="number" id="actRegistrationTotal" name="actRegistrationTotal">
+                <input type="number" id="actRegistrationTotal" name="actRegistrationTotal" placeholder="0.00">
                 <label for="actRegistrationTotal">Actual Registration</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s4 offset-s1">
-                <input type="text" id="parkingTotal" name="parkingTotal" value="<?= info[18] ?>" readonly>
+                <input type="text" id="parkingTotal" name="parkingTotal" value="<?= info[19] ?>" readonly>
                 <label for="parkingTotal">Estimated Parking/Tolls</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="number" id="actParkingTotal" name="actParkingTotal">
+                <input type="number" id="actParkingTotal" name="actParkingTotal" placeholder="0.00">
                 <label for="actParkingTotal">Actual Parking/Tolls</label>
               </div>
             </div>
@@ -173,7 +173,7 @@
                 <label for="lodgingTotal">Estimated Lodging</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="number" id="actLodgingTotal" name="actLodgingTotal">
+                <input type="number" id="actLodgingTotal" name="actLodgingTotal" placeholder="0.00">
                 <label for="actLodgingTotal">Actual Lodging</label>
               </div>
             </div>
@@ -183,7 +183,7 @@
                 <label for="breakfastTotal">Estimated Breakfast</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="number" id="actBreakfastTotal" name="actBreakfastTotal">
+                <input type="number" id="actBreakfastTotal" name="actBreakfastTotal" placeholder="0.00">
                 <label for="actBreakfastTotal">Actual Breakfast</label>
               </div>
             </div>
@@ -193,7 +193,7 @@
                 <label for="lunchTotal">Estimated Lunch</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="number" id="actLunchTotal" name="actLunchTotal">
+                <input type="number" id="actLunchTotal" name="actLunchTotal" placeholder="0.00">
                 <label for="actLunchTotal">Actual Lunch</label>
               </div>
             </div>
@@ -203,7 +203,7 @@
                 <label for="dinnerTotal">Estimated Dinner</label>
               </div>
               <div class="input-field col s4 offset-s2">
-                <input type="number" id="actDinnerTotal" name="actDinnerTotal">
+                <input type="number" id="actDinnerTotal" name="actDinnerTotal" placeholder="0.00">
                 <label for="actDinnerTotal">Actual Dinner</label>
               </div>
             </div>
@@ -222,12 +222,12 @@
           <div class="row">
             <div class="input-field col s12 m6">
               <i class="material-icons prefix">edit</i>
-              <input type="text" id="signature" name="signature">
-              <label for="signature">Digital Signature</label>
+              <input type="text" id="signature2" name="signature2">
+              <label for="signature2">Digital Signature</label>
             </div>
             <div class="input-field col s12 m6">
               <i class="material-icons prefix"></i>
-              <input type="text" id="signDate" name="signDate">
+              <input type="text" id="signDate" name="signDate" value="_" readonly>
               <label for="signDate">Date</label>
             </div>
           </div>
@@ -321,14 +321,19 @@
             "email": <?= info[7] ?>,
             "meetingInfo": <?= info[9] ?>,
             "dates": <?= info[10] ?>,
-            "actGrandTotal": document.getElementById('actGrandTotal').value,
+            "actMileageTotal": checkNull(document.getElementById('actMileageTotal')),
+            "actRegistrationTotal": checkNull(document.getElementById('actRegistrationTotal')),
+            "actParkingTotal": checkNull(document.getElementById('actParkingTotal')),
+            "actLodgingTotal": checkNull(document.getElementById('actLodgingTotal')),
+            "actBreakfastTotal": checkNull(document.getElementById('actBreakfastTotal')),
+            "actLunchTotal": checkNull(document.getElementById('actLunchTotal')),
+            "actDinnerTotal": checkNull(document.getElementById('actDinnerTotal')),
+            "actGrandTotal": checkNull(document.getElementById('actGrandTotal')),
             "finalComments": document.getElementById('finalComments').value,
+            "signDate2": document.getElementById('signDate').value,
+            "finalsignature": document.getElementById('signature2').value,
           };
-          
-          //const form = document.getElementsByClassName('main')[0];
-          //const data = formToJSON(form.elements);
           console.log(data);
-      
           var dataToSend = JSON.stringify(data, null, "  ");
           
           google.script.run
@@ -353,6 +358,12 @@
         div.innerHTML = 'Something went wrong!';
     }
     
+    function checkNull (checker) {
+      if (checker == null) {
+        return 0;
+      }
+      return checker.value;
+    }
     const formToJSON = (elements) => [].reduce.call(elements, (data, element) => {
       // Make sure the element has the required properties.
       console.log(element.value);
@@ -380,6 +391,7 @@
 
     $(document).ready(function(){
       calculateCosts();
+      $('#signDate').val(getCurrentDate());
       $("#formValidate").validate({
         submitHandler: function(form, event) { 
           event.preventDefault();
@@ -410,16 +422,27 @@
       calculateCosts();
     });
     function calculateCosts() {
-      var mileageCost = Number($('#actMileageTotal').val());
+      var mileage = Number($('#actMileageTotal').val());
       var registrationCost = Number($('#actRegistrationTotal').val());
       var parkingCost = Number($('#actParkingTotal').val());
       var lodgingCost = Number($('#actLodgingTotal').val());
       var breakfastCost = Number($('#actBreakfastTotal').val());
       var lunchCost = Number($('#actLunchTotal').val());
       var dinnerCost = Number($('#actDinnerTotal').val());
-      
-      document.getElementById('actGrandTotal').value = "$" + (mileageCost + registrationCost + 
+      //document.getElementById('actMileageTotal').value = "$" + (mileage * 0.58).toFixed(2);
+      //document.getElementById('actRegistrationTotal').value = "$" + parkingCost.toFixed(2);
+      //document.getElementById('actParkingTotal').value = "$" + parkingCost.toFixed(2);
+      //document.getElementById('actLodgingTotal').value = "$" + parkingCost.toFixed(2);
+      //document.getElementById('actBreakfastTotal').value = "$" + parkingCost.toFixed(2);
+      //document.getElementById('actLunchTotal').value = "$" + parkingCost.toFixed(2);
+      //document.getElementById('actDinnerTotal').value = "$" + parkingCost.toFixed(2);
+      document.getElementById('actGrandTotal').value = "$" + (mileage + registrationCost + 
         parkingCost + lodgingCost + breakfastCost + lunchCost + dinnerCost).toFixed(2);
+    }
+    function getCurrentDate(){
+      today_date = new Date();
+      today_Date_Str = ((today_date.getMonth() < 9) ? "0" : "") + String(today_date.getMonth() + 1)+ "-" + ((today_date.getDate() < 10) ? "0" : "") + String(today_date.getDate()) + "-" +today_date.getFullYear();
+      return today_Date_Str;
     }
   </script>
 </body>

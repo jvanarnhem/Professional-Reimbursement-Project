@@ -36,11 +36,6 @@ function doMerge(subNumber, lastName, folderID, templateID, spreadsheetID) {
     if (data[i][0] == subNumber) {
       var row = values[i];
       var body = bodyCopy.copy();
-    
-      // Go through once for currency fields indicated with [$fieldname]
-      for (var f = 0; f < fieldNames.length; f++) {
-        body.replaceText("\\{" + fieldNames[f] + "\\}", formatStringCurrency(row[f]));//replace {fieldName} with the respective formatted money data value
-      }
       
       // One more time for non-currency fields
       for (var f = 0; f < fieldNames.length; f++) {
